@@ -1,0 +1,18 @@
+/*783. Minimum Distance Between BST Nodes*/
+
+class Solution:
+    def minDiffInBST(self, root: TreeNode) -> int:
+        self.temp=None
+        self.minDiff=sys.maxsize
+        def inorder_traverse(node):
+            if node is None:
+                return
+            inorder_traverse(node.left)
+            if self.temp is None:
+                self.temp=node
+            else:
+                self.minDiff=min(node.val-self.temp.val,self.minDiff)
+                self.temp=node
+            inorder_traverse(node.right)
+        inorder_traverse(root)
+        return self.minDiff
