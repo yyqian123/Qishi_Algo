@@ -51,4 +51,21 @@ class Solution:
                 return False
       
 # 34. Find First and Last Position of Element in Sorted Array    
-
+class Solution:
+    def searchRange(self, nums: List[int], target: int) -> List[int]:
+        left=self.left_index(nums, target, True)
+        right=self.left_index(nums, target, False)-1
+        if left==len(nums) or nums[left]!=target:
+            return [-1,-1]
+        return[left,right]
+    
+    def left_index(self,nums: List[int], target: int, left_or_right:bool):
+        start,end=0,len(nums)
+        while start<end:
+            mid=(start+end)//2
+            if nums[mid]>target or (nums[mid]==target and left_or_right):
+                end=mid
+            else:
+                start=mid+1
+        return start
+        
